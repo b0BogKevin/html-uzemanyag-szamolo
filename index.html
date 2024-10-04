@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Üzemanyag számoló</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="../jquery-3.7.1.min.js"></script>
+    <script src='script.js'></script>
+</head>
+
+<body class="bg-dark text-white ">
+    <div class="container mt-5 ">
+        <h1>Költségtérítés</h1>
+        <form method="POST">
+            <fieldset class="d-inline">
+                <legend>Üzemanyag kategória</legend>
+                <input type="radio" class="form-check-input bg-info" name="eroforras" id="benzin" value="benzin">
+                <label for="benzin" class="form-check-label">Benzin</label><br>
+                <input type="radio" class="form-check-input  bg-info" name="eroforras" id="dizel" value="dizel">
+                <label for="dizel" class="form-check-label">Dízel</label><br>
+                <input type="radio" class="form-check-input  bg-info" name="eroforras" id="elektromos" value="elektromos">
+                <label for="elektromos" class="form-check-label">Elektromos</label><br>
+                <input type="radio" class="form-check-input  bg-info" name="eroforras" id="lpg" value="lpg">
+                <label for="lpg" class="form-check-label">LPG</label><br>
+            </fieldset>
+            <fieldset class="d-inline">
+                <legend>Amortizációs díj</legend>
+                <input type="radio" name="amort" class="form-check-input bg-info" id="18"> <label for="18">18</label><br>
+                <input type="radio" name="amort" class="form-check-input bg-info" id="30"> <label for="30">30</label>
+
+            </fieldset>
+            <fieldset class="mt-4 ">
+                <div class="col-2"><input type="number" class="form-text form-control " id="ftl"> </div>
+                <label for="ftl">Ft/l</label>
+                
+            </fieldset>
+            <fieldset class="mt-3">
+                <legend class="mt-3">Autó adatai</legend>
+                <div class="col-2">
+                    <select name="cc" id="ccselect" class="mt-3 form-select form-select-lg bg-dark text-white ">
+                        <option value='-1'></option>
+                    </select>
+                </div>
+                <label for="plate" class="mt-2">Rendszám: </label>
+                <div class="d-flex justify-content-between col-1">
+                    <input type="text" class="form-text form-control" id="plate"><br>
+                </div>
+
+                <label for="make" class="mt-2">Gyártó, típus: </label>
+                <div class="d-flex justify-content-between col-3 ">
+                    <input type="text" class="form-text form-control" id="make"><br>
+                </div>
+
+                <label for="where" class="mt-2">Honnan-hova: </label>
+                <div class="d-flex justify-content-between col-3 ">
+                    <input type="text" class="form-text form-control" id="where"><br>
+                </div>
+
+                <label for="dis" class="mt-2">Megtett távolság: </label>
+                <div class="d-flex justify-content-between col-3 ">
+                    <input type="text" class="form-text form-control" id="dis"><br>
+                </div>
+
+            </fieldset>
+            <button type="submit" class="btn btn-success mt-3" disabled> Számolás</button>
+        </form>
+    </div>
+</body>
+
+</html>
