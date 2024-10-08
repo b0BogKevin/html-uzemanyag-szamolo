@@ -43,7 +43,7 @@ $(function () {
                 text: '3001 cm3 felett'
             }
         ]
-    let filled = [false, true, true, true, true, true, true, true]
+    let filled = [false, false, false, false, false, false, false, false]
 
     $("form").submit(function (e) {
         e.preventDefault
@@ -54,7 +54,7 @@ $(function () {
         uzemanyag = $(this).val()
         filled[0] = true
         $("#ccselect").html("<option value='-1'></option>")
-        
+
         if (uzemanyag == "dizel") {
             getUzemanyag(dizeles)
         }
@@ -62,12 +62,37 @@ $(function () {
             getUzemanyag(benzines)
         }
     })
+    $("[name=amort]").change(function () {
+        uzemanyag = $(this).val()
+        filled[1] = true
+
+    })
+    $("#ftl").change(function () {
+        filled[2] = true
+
+    })
+    $("#ccselect").change(function () {
+        filled[3] = !($("#ccselect").val() == "-1")
+    })
+    let plateregex = /[A-Za-z]{3,4}-[0-9]{3}/gm
+    $("#plate").change(function () {
+        filled[4] = plateregex.test($("#plate").val())
+    })
+    $("#make").change(function () {
+        filled[5] = $("#make").val() !=""
+    })
+    $("#where").change(function () {
+        filled[6] = $("#where").val() !=""
+    })
+    $("#dis").change(function () {
+        filled[7] = $("#dis").val() !=""
+    })
 
     $("input, select").change(function () {
-        if (!filled.includes(false)) {
-            $("[type=submit]").attr("disabled", false)
-        }
+        $("[type=submit]").attr("disabled", filled.includes(false))
+        
     })
+
 
     function getUzemanyag(t) {
         t.forEach((o) => {
