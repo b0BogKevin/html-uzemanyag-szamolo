@@ -63,7 +63,6 @@ $(function () {
         }
     })
     $("[name=amort]").change(function () {
-        uzemanyag = $(this).val()
         filled[1] = true
 
     })
