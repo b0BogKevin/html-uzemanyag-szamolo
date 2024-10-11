@@ -44,7 +44,7 @@ $(function () {
             }
         ]
     let filled = [false, false, false, false, false, false, false, false]
-
+    let ertekek = {}
     $("form").submit(function (e) {
         e.preventDefault
     })
@@ -62,40 +62,76 @@ $(function () {
             getUzemanyag(benzines)
         }
     })
-    $("[name=amort]").change(function () {
-        filled[1] = true
-
-    })
-    $("#ftl").change(function () {
-        filled[2] = true
-
-    })
-    $("#ccselect").change(function () {
-        filled[3] = !($("#ccselect").val() == "-1")
-    })
-    let plateregex = /[A-Za-z]{3,4}-[0-9]{3}/gm
-    $("#plate").change(function () {
-        filled[4] = plateregex.test($("#plate").val())
-    })
-    $("#make").change(function () {
-        filled[5] = $("#make").val() !=""
-    })
-    $("#where").change(function () {
-        filled[6] = $("#where").val() !=""
-    })
-    $("#dis").change(function () {
-        filled[7] = $("#dis").val() !=""
-    })
 
     $("input, select").change(function () {
+        let element = $(this)
+        ertekek[element.attr("name")] = element.val()
+        console.table(ertekek)
+
+        switch (element.attr("name")) {
+            case "eroforras":
+                filled[0] = true
+                break;
+            case "amort":
+                filled[1] = true
+                break;
+            case "ftl":
+                filled[2] = $("#ftl").val() > 0
+                break;
+            case "cc":
+                filled[3] = !($("#ccselect").val() == "-1")
+                break;
+            case "plate":
+                let plateregex = /([A-Za-z]{3}-[0-9]{3})|([a-zA-Z]{2}-[a-zA-Z]{2}-[0-9]{3})/gm
+                filled[4] = plateregex.test($("#plate").val())
+                break
+            case "make":
+                filled[5] = $("#make").val() != ""
+                break;
+            case "where":
+                filled[6] = /[a-zA-Z]{1,50}-[a-zA-Z]{1,50}/gm.test($("#where").val()) && !(/[\d]/gm.test($("#where").val()))
+                break;
+            case "dis":
+                filled[7] = $("#dis").val() > 0
+                break;
+            default:
+                break;
+        }
         $("[type=submit]").attr("disabled", filled.includes(false))
-        
+
+        console.log(filled);
+
+    })
+    $("[type=submit]").click(function () {
+        szamitas(ertekek)
     })
 
 
-    function getUzemanyag(t) {
-        t.forEach((o) => {
-            $("#ccselect").append("<option value ='" + o.value + "'>" + o.text + "</option>")
-        })
-    }
 })
+function getUzemanyag(t) {
+    t.forEach((o) => {
+        $("#ccselect").append("<option value ='" + o.value + "'>" + o.text + "</option>")
+    })
+}
+
+function szamitas(ertekek) {
+    for (const key in ertekek) {
+        if (Object.prototype.hasOwnProperty.call(ertekek, key)) {
+            const element = ertekek[key];
+            let fogy = 0;
+            if (key == "eroforras") {
+                switch (element) {
+
+                    case "lpg":
+                        fogy = ertekek["cc"] * 1.2
+                        break;
+                    case "elektromos": fogy = 3; break;
+
+                    default: fogy = ertekek["cc"]; break;
+                }
+            }
+            let koltseg = fogy * ertekek["dis"] / 100 * ertekek["ftl"] + ertekek[dis] * ertekek["amort"]
+            $(".koltseg").html(koltseg)
+        }
+    }
+}

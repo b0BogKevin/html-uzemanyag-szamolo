@@ -28,14 +28,15 @@
             </fieldset>
             <fieldset class="d-inline">
                 <legend>Amortizációs díj</legend>
-                <input type="radio" name="amort" class="form-check-input bg-info" id="18"> <label for="18">18</label><br>
-                <input type="radio" name="amort" class="form-check-input bg-info" id="30"> <label for="30">30</label>
+                <input type="radio" name="amort" class="form-check-input bg-info" id="18" value="18"> <label for="18">18</label><br>
+                <input type="radio" name="amort" class="form-check-input bg-info" id="30" value="30"> <label for="30">30</label>
 
             </fieldset>
             <fieldset class="mt-4 ">
-                <div class="col-2"><input type="number" class="form-text form-control " id="ftl"> </div>
+                <div class="col-2"><input type="number" class="form-text form-control " id="ftl" name="ftl"> </div>
                 <label for="ftl">Ft/l</label>
-                
+                <p class="text-danger">Elektromos és LPG meghajtás esetén az árhoz a benzin árát add meg!</p>
+
             </fieldset>
             <fieldset class="mt-3">
                 <legend class="mt-3">Autó adatai</legend>
@@ -46,27 +47,28 @@
                 </div>
                 <label for="plate" class="mt-2">Rendszám: </label>
                 <div class="d-flex justify-content-between col-2 min-100">
-                    <input type="text" class="form-text form-control" id="plate"><br>
+                    <input type="text" class="form-text form-control" id="plate" name="plate"><br>
                 </div>
 
                 <label for="make" class="mt-2">Gyártó, típus: </label>
                 <div class="d-flex justify-content-between col-3 ">
-                    <input type="text" class="form-text form-control" id="make"><br>
+                    <input type="text" class="form-text form-control" id="make" name="make"><br>
                 </div>
 
                 <label for="where" class="mt-2">Honnan-hova: </label>
                 <div class="d-flex justify-content-between col-3 ">
-                    <input type="text" class="form-text form-control" id="where"><br>
+                    <input type="text" class="form-text form-control" id="where" name="where"><br>
                 </div>
 
                 <label for="dis" class="mt-2">Megtett távolság: </label>
                 <div class="d-flex justify-content-between col-3 ">
-                    <input type="text" class="form-text form-control" id="dis"><br>
+                    <input type="number" class="form-text form-control" id="dis" name="dis"><br>
                 </div>
 
             </fieldset>
             <button type="submit" class="btn btn-success mt-3" disabled> Számolás</button>
         </form>
+        <div class="koltseg"></div>
     </div>
 </body>
 
